@@ -1,2 +1,2 @@
 # Poker
-Nada
+Implementação mais foda do video poker em java
