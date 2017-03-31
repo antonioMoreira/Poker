@@ -13,7 +13,7 @@ public class Carta {
 	 * @param nipe
 	 * 		Um inteiro que representa o naipe da carta. 0 → copas; 1 → paus; 2 → ouro; 3 → espada 
 	 */
-	public Carta(int valorCarta, char naipe){
+	public Carta(int valorCarta, int naipe){
 		this.valorCarta = valorCarta;
 		this.naipe = naipe;		
 	}

@@ -9,7 +9,7 @@ public class Baralho {
 	Carta carta;		
 	
 	/**
-	 * Construi um baralho ordenado e depois o embaralha 
+	 * Constrói um baralho ordenado e depois o embaralha.
 	 */
 	public Baralho(){
 		for(int i = 0 ; i < 4 ; i++){
