@@ -8,6 +8,10 @@ public class Mesa {
 	Baralho baralho = new Baralho();
 	Carta[] hand = new Carta[5];
 	
+	public int getCreditos(){
+		return this.creditos;
+	}
+	
 	public Mesa(){
 		this.creditos = 200;
 		
@@ -64,7 +68,7 @@ public class Mesa {
 		for(int i=0; i<5; i++)
 			baralho.descarteCarta(hand[i]);
 		
-		//baralho.refazerBaralho();
+		baralho.refazerBaralho();
 	}
 	
 	public String toString(){
