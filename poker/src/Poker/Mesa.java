@@ -12,6 +12,10 @@ public class Mesa {
 		return this.creditos;
 	}
 	
+	public Carta[] getHand(){
+		return hand;
+	}
+	
 	public Mesa(){
 		this.creditos = 200;
 		
@@ -19,7 +23,7 @@ public class Mesa {
 			hand[i] = baralho.retirarBaralho();		
 	}
 	
-	public void trocarCartas(boolean []vetorAux){
+	private void trocarCartas(boolean []vetorAux){
 		
 		for(int i=0; i<5; i++){
 			if(vetorAux[i]){
@@ -50,14 +54,15 @@ public class Mesa {
 	}
 	
 	public int apostar() throws IOException{
-		int valorAposta = EntradaTeclado.leInt();
+		int valorAposta;
 		
-		if(valorAposta < this.creditos){
-			this.creditos -= valorAposta;
-			return valorAposta;			
-		}		
+		do{
+			valorAposta = EntradaTeclado.leInt();
+		}while(valorAposta < this.creditos && valorAposta > 0);
 		
-		return -1;
+		this.creditos -= valorAposta;
+		
+		return valorAposta;					
 	}
 	
 	public void receberCreditos(int creditos){
