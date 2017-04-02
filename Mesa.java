@@ -8,6 +8,14 @@ public class Mesa {
 	Baralho baralho = new Baralho();
 	Carta[] hand = new Carta[5];
 	
+	public int getCreditos(){
+		return this.creditos;
+	}
+	
+	public Carta[] getHand(){
+		return hand;
+	}
+	
 	public Mesa(){
 		this.creditos = 200;
 		
@@ -15,7 +23,7 @@ public class Mesa {
 			hand[i] = baralho.retirarBaralho();		
 	}
 	
-	public void trocarCartas(boolean []vetorAux){
+	private void trocarCartas(boolean []vetorAux){
 		
 		for(int i=0; i<5; i++){
 			if(vetorAux[i]){
@@ -46,14 +54,16 @@ public class Mesa {
 	}
 	
 	public int apostar() throws IOException{
-		int valorAposta = EntradaTeclado.leInt();
+		int valorAposta;
 		
-		if(valorAposta < this.creditos){
-			this.creditos -= valorAposta;
-			return valorAposta;			
-		}		
+		do{
+			
+			valorAposta = EntradaTeclado.leInt();
+		}while(!(valorAposta < this.creditos && valorAposta > 0));
 		
-		return -1;
+		this.creditos -= valorAposta;
+		
+		return valorAposta;					
 	}
 	
 	public void receberCreditos(int creditos){
@@ -64,14 +74,32 @@ public class Mesa {
 		for(int i=0; i<5; i++)
 			baralho.descarteCarta(hand[i]);
 		
-		//baralho.refazerBaralho();
+		baralho.refazerBaralho();
 	}
 	
-	public String toString(){
+	
+	
+	/**
+	 * Funcão sobrecarrega o metodo toString e retorna a string das cartas horizontalmente.
+	 * @return string de desenho dos dados.
+	 */
+	@Override
+	public java.lang.String toString(){
+		String retorno = new String();
+		String vecAux[] = new String[7];
 		
 		
-		
-		return null;
+		for(int i = 0 ; i < 7 ; i++){
+			vecAux[i] = "";
+			for(int j = 0; j < 5 ; j++){
+				vecAux[i] += hand[j].toString().substring(11*i, (10*(i+1)) + i) + " ";
+			//	System.out.println(hand[j].toString());
+			}
+			retorno += vecAux[i] + "\n";
+			
+		}
+			
+		return retorno;
 	}
 	
 }
