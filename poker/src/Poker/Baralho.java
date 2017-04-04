@@ -36,4 +36,12 @@ public class Baralho {
 		descarte.push(carta);
 	}
 	
+	/**
+	 * Reestabelece o baralho de volta com 52 cartas e depois o embaralha
+	 */
+	public void refazerBaralho(){
+		while(!descarte.empty()) baralho.push(descarte.pop());
+		Collections.shuffle(baralho);
+	}
+	
 }
