@@ -19,17 +19,18 @@ public class VideoPoker {
 		Combinacao comb = new Combinacao();
 		String cartasTroca;
 		int comando, aposta = 0, contadorRodada = 0;
-		
+			
 		do{
 			if(contadorRodada == 0){
+				System.out.println("Você possui [" + mesa.getCreditos() + "] creditos");
 				System.out.println("Digite o valor da aposta: ");
 				aposta = mesa.apostar();
-			
-				System.out.println("Você possui [" + mesa.getCreditos() + "] creditos");
 				System.out.println(mesa.toString());
 			}
-				
-			if(contadorRodada < 3){
+			
+			System.out.println("Aposta :" + aposta);
+			
+			if(contadorRodada < 2 && aposta > 0){
 				printComandos();
 				comando = EntradaTeclado.leInt();
 				contadorRodada++;
@@ -38,7 +39,8 @@ public class VideoPoker {
 			switch(comando){
 				case 1:
 					cartasTroca = EntradaTeclado.leString();
-					mesa.trocarCartas(cartasTroca);					
+					mesa.trocarCartas(cartasTroca);	
+					System.out.println(mesa.toString());
 					break;
 				case 2: //Fim de rodada
 					comb.setValor(aposta);
@@ -52,10 +54,10 @@ public class VideoPoker {
 					break;
 			}				
 			
-		}while(mesa.getCreditos() > 0 || comando != 0);
+		}while(mesa.getCreditos() >= 0 && comando != 0);
 		
 		System.out.println("Fim de jogo!");
-		System.out.println("Você terminou com " + mesa.getCreditos() + "fichas.");
+		System.out.println("Você terminou com " + mesa.getCreditos() + " fichas.");
 	
 	}
 

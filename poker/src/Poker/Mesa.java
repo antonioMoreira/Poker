@@ -20,7 +20,7 @@ public class Mesa {
 		this.creditos = 200;
 		
 		for(int i=0; i<5; i++)
-			hand[i] = baralho.retirarBaralho();		
+			hand[i] = baralho.retirarBaralho();	
 	}
 	
 	private void trocarCartas(boolean []vetorAux){
@@ -56,9 +56,11 @@ public class Mesa {
 	public int apostar() throws IOException{
 		int valorAposta;
 		
+		if(this.creditos == 0) return -1;
+		
 		do{
 			valorAposta = EntradaTeclado.leInt();
-		}while(valorAposta < this.creditos && valorAposta > 0);
+		}while(!(valorAposta <= this.creditos && valorAposta > 0));
 		
 		this.creditos -= valorAposta;
 		
@@ -70,17 +72,34 @@ public class Mesa {
 	}
 	
 	public void reembaralhar(){
-		for(int i=0; i<5; i++)
+		for(int i=0; i<5; i++){
 			baralho.descarteCarta(hand[i]);
-		
+		}
+			
 		baralho.refazerBaralho();
 	}
 	
-	public String toString(){
+	
+	/**
+	 * Funcão sobrecarrega o metodo toString e retorna a string das cartas horizontalmente.
+	 * @return string de desenho dos dados.
+	 */
+	@Override
+	public java.lang.String toString(){
+		String retorno = new String();
+		String vecAux[] = new String[7];
 		
-		
-		
-		return null;
+				
+		for(int i = 0 ; i < 7 ; i++){
+			vecAux[i] = "";
+			for(int j = 0; j < 5 ; j++){
+				vecAux[i] += hand[j].toString().substring(11*i, (10*(i+1)) + i) + " ";
+			}
+			retorno += vecAux[i] + "\n";
+			
+		}
+			
+		return retorno;
 	}
 	
 }

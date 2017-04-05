@@ -3,13 +3,23 @@ package Poker;
 import java.util.Stack;
 import java.util.Collections;
 
+
+/**
+ * A classe trata o baralho como um TAD-pilha, logo todas as
+ * funções relacionadas à pilha são aplicadas no Baralho.
+ * <p>Pop : retira uma carta do topo da pilha
+ * <p>Push: coloca uma carta no topo da pilha 
+ * <p>
+ * @author Antonio 9779242
+ * @author Murtha 4182085
+ */
 public class Baralho {
 	Stack<Carta> baralho = new Stack<Carta>();
 	Stack<Carta> descarte = new Stack<Carta>();
 	Carta carta;		
 	
 	/**
-	 * Constrói um baralho ordenado e depois o embaralha.
+	 * Construi um baralho ordenado e depois o embaralha 
 	 */
 	public Baralho(){
 		for(int i = 0 ; i < 4 ; i++){
@@ -34,6 +44,17 @@ public class Baralho {
 	 */
 	public void descarteCarta(Carta carta){
 		descarte.push(carta);
+	}
+	
+	/**
+	 * Reestabelece o baralho de volta com 52 cartas e depois o embaralha
+	 */
+	public void refazerBaralho(){
+		while(!(descarte.empty())){
+			baralho.push(descarte.pop());
+		}
+		
+		Collections.shuffle(baralho);
 	}
 	
 }
